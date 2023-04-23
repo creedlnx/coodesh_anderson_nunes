@@ -1,59 +1,24 @@
-variable "ami" {
-  default = ""
+variable "ami"{
+    type = string
 }
-
-variable "cdirs_coodesh_test" {
-  type    = list(any)
-  default = [""]
+variable "instance_type"{
+    type = string
 }
-
-variable "sgs_coodesh_test" {
-  type    = list(any)
-  default = [""]
+variable "key_name"{
+    type = string
 }
-
-variable "ingress_ports" {
-  type    = list(any)
-  default = [80, 443]
+variable "availability_zone"{
+    type = string
 }
-
-variable "client_name" {
-  default = "coodesh"
+variable "security_group_id"{
+    type = string
 }
-
-variable "instance_type" {
-  default = "t2.micro"
+variable "subnet_id"{
+    type = string
 }
-
-variable "environment" {
-  default = "coodesh-test"
+variable "ec2_iam_role"{
+    default = ""
 }
-
-variable "key_name" {
-  default = "coodesh"
-}
-
-variable "zona" {
-  default = "us-east-1a"
-}
-
-variable "vpc_id" {
-  default = ""
-}
-
-variable "subnet_id" {
-  default = ""
-}
-
-variable "disk_size" {
-  default = "10"
-}
-
-variable "role" {
-  default = ""
-}
-
-variable "tag" {
-  type = string
-  default = "coodesh"
+variable "instance_name"{
+    type = string
 }

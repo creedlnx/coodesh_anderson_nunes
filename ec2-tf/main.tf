@@ -1,17 +1,13 @@
-module "ec2" {
-  source        = ".terraform/modules"
-  version       = "0.0.7"
-  ami           = var.ami
-  cdirs_acesso  = var.cdirs_coodesh_test
-  ingress_ports  = var.ingress_ports
-  client_name   = var.client_name
-  instance_type = var.instance_type
-  environment   = var.environment
-  key_name      = var.key_name
-  zona          = var.zona
-  subnet_id     = var.subnet_id
-  vpc_id     = var.vpc_id
-  disk_size     = var.disk_size
-  sgs_acesso = var.sgs_coodesh_test
-  tag = var.tag
+resource "aws_instance" "ec2_instance" {
+  ami                     = var.ami
+  instance_type           = var.instance_type
+  key_name                = var.key_name
+  availability_zone       = var.availability_zone
+  vpc_security_group_ids  = var.security_group_id
+  subnet_id               = var.subnet_id
+  iam_instance_profile    = var.ec2_iam_role
+
+  tags = {
+    Name = var.instance_name
+  }
 }
