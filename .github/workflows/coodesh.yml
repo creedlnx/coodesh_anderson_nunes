@@ -32,7 +32,7 @@ jobs:
         echo "tfpath ${{ github.event.inputs.tfpath }}"
         
         echo "** Running Terraform Init**"
-        terraform init
+        terraform init -reconfigure
 
         echo "** Running Terraform Validate**"
         terraform validate
