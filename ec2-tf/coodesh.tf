@@ -23,7 +23,7 @@ data "template_file" "coodesh_volume"{
 }
 
 module "coodesh_sg"{
-  source          = "/Users/anderson/Git/Coodesh/coodesh_anderson_nunes/ec2-tf/modules/sg"
+  source          = "./modules/sg"
   sg_name         = data.template_file.coodesh_sg_name.rendered
   sg_description  = "Coodesh Security Group"
   sg_vpc_id       = var.vpc_id
@@ -31,7 +31,7 @@ module "coodesh_sg"{
 }
 
 module "coodesh_sgr" {
-  source                  = "/Users/anderson/Git/Coodesh/coodesh_anderson_nunes/ec2-tf/modules/sg-rule"
+  source                  = "./modules/sg-rule"
   sgr_security_group_name = module.coodesh_sg.security_group_name
   sgr_type                = "ingress"
   sgr_from_port           = 80
@@ -42,7 +42,7 @@ module "coodesh_sgr" {
 }
 
 module "coodesh_sgr_outbound_all" {
-  source                  = "/Users/anderson/Git/Coodesh/coodesh_anderson_nunes/ec2-tf/modules/sg-rule"
+  source                  = "./modules/sg-rule"
   sgr_security_group_name = module.coodesh_sg.security_group_name
   sgr_type                = "egress"
   sgr_from_port           = 0
@@ -60,7 +60,7 @@ data "template_file" "coodesh_startup_script"{
 }
 
 module "coodesh_efs" {
-  source                = "/Users/anderson/Git/Coodesh/coodesh_anderson_nunes/ec2-tf/modules/efs"
+  source                = "./modules/efs"
   efs_name              = data.template_file.coodesh_volume.rendered
   efs_availability_zone = var.coodesh_availability_zone
   efs_tags              = local.tags
@@ -68,7 +68,7 @@ module "coodesh_efs" {
 }
 
 module "coodesh_volume"{
-  source                  = "/Users/anderson/Git/Coodesh/coodesh_anderson_nunes/ec2-tf/modules/efs-mount-target"
+  source                  = "./modules/efs-mount-target"
   emt_efs_name            = data.template_file.coodesh_volume.rendered
   emt_subnet              = var.coodesh_subnet
   emt_security_group_name = data.template_file.coodesh_sg_name.rendered
