@@ -14,6 +14,10 @@ data "template_file" "coodesh_service_name"{
   }
 }
 
+data "template_file" "install" {
+template = "${file("./scripts/coodeshStart.sh")}"
+}
+
 module "coodesh_sg"{
   source          = "./modules/sg"
   sg_name         = data.template_file.coodesh_sg_name.rendered
@@ -61,13 +65,7 @@ resource "aws_instance" "ec2_instance" {
   key_name                = var.key_name
   vpc_security_group_ids  = [module.coodesh_sg.security_group_id]
   subnet_id               = var.coodesh_subnet
-  user_data = <<EOF
-  #! /bin/bash
-  sudo apt-get update
-	sudo apt-get install -y nginx
-	sudo systemctl start nginx
-	sudo systemctl enable nginx
-	EOF
+  user_data               = "${data.template_file.install.rendered}"
 
   tags = {
     Name = "Coodesh"
