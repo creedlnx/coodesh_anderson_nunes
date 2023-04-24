@@ -14,14 +14,6 @@ data "template_file" "coodesh_service_name"{
   }
 }
 
-#data "template_file" "coodesh_volume"{
-#  template = var.resource_name
-#
-#  vars = {
-#    resource_name = "coodesh-volume"
-#  }
-#}
-
 module "coodesh_sg"{
   source          = "./modules/sg"
   sg_name         = data.template_file.coodesh_sg_name.rendered
@@ -52,37 +44,12 @@ module "coodesh_sgr_outbound_all" {
   depends_on              = [module.coodesh_sg]
 }
 
-#data "template_file" "coodesh_startup_script"{
-#  template = file("scripts/coodeshStart.sh")
-#  vars = {
-#    efs_id = module.coodesh_efs.efs_id
-#  }
-#}
-#
-#module "coodesh_efs" {
-#  source                = "./modules/efs"
-#  efs_name              = data.template_file.coodesh_volume.rendered
-#  efs_availability_zone = var.coodesh_availability_zone
-#  efs_tags              = local.tags
-#  environment           = var.environment
-#}
-#
-#module "coodesh_volume"{
-#  source                  = "./modules/efs-mount-target"
-#  emt_efs_name            = data.template_file.coodesh_volume.rendered
-#  emt_subnet              = var.coodesh_subnet
-#  emt_security_group_name = data.template_file.coodesh_sg_name.rendered
-#  depends_on              = [module.coodesh_efs, module.coodesh_sg]
-#}
-
 resource "aws_instance" "ec2_instance" {
   ami                     = var.ami
   instance_type           = var.instance_type
   key_name                = var.key_name
-  #availability_zone       = var.availability_zone
   vpc_security_group_ids  = [module.coodesh_sg.security_group_id]
   subnet_id               = var.coodesh_subnet
-  #iam_instance_profile    = var.ec2_iam_role
 
   tags = {
     Name = "Coodesh"
