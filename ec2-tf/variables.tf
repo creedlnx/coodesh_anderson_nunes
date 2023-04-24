@@ -1,24 +1,31 @@
-variable "ami"{
-    type = string
+variable "region" {
+  default = "us-east-1"
 }
-variable "instance_type"{
-    type = string
+
+variable "key" {
+  default = "coodesh"
 }
-variable "key_name"{
-    type = string
+
+variable "vpc_id" {
+  default = "vpc-96759eee"
 }
-variable "availability_zone"{
-    type = string
+
+variable "sg_rule_all_ip"{
+  default = ["0.0.0.0/0"]
 }
-variable "security_group_id"{
-    type = string
+
+variable "coodesh_master_availability_zone" {
+  default = "us-east-1a"
 }
-variable "subnet_id"{
-    type = string
+
+variable "resource_name" {
+  default = "$${resource_name}"
 }
-variable "ec2_iam_role"{
-    default = ""
+
+variable "environment" {
+  default = "coodesh"
 }
-variable "instance_name"{
-    type = string
+
+variable "coodesh_subnet" {
+  default = "subnet-8b1217d1"
 }
