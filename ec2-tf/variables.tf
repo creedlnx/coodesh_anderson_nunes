@@ -14,7 +14,7 @@ variable "sg_rule_all_ip"{
   default = ["0.0.0.0/0"]
 }
 
-variable "coodesh_master_availability_zone" {
+variable "coodesh_availability_zone" {
   default = "us-east-1a"
 }
 
@@ -29,3 +29,19 @@ variable "environment" {
 variable "coodesh_subnet" {
   default = "subnet-8b1217d1"
 }
+
+variable "ami" {
+  default = "ami-0c6c29c5125214c77"
+}
+
+variable "instance_type" {
+  default = "t2.micro"
+}
+
+variable "key_name" {
+  default = "coodesh"
+}
+
+#variable "vpc_security_group_ids" {
+#  type = map(list(string))
+#}
