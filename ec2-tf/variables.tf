@@ -31,7 +31,7 @@ variable "coodesh_subnet" {
 }
 
 variable "ami" {
-  default = "ami-0c6c29c5125214c77"
+  default = "ami-007855ac798b5175e"
 }
 
 variable "instance_type" {

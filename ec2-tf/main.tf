@@ -1,6 +1,8 @@
 terraform {
-  backend "local" {
-    path = "./terraform.tfstate"
+  backend "s3" {
+    bucket = "coodesh-bucket"
+    key = "./terraform.state"
+    region = "us-east-1"
   }
 }
 
