@@ -32,7 +32,7 @@ module "coodesh_sgr" {
   sgr_type                = "ingress"
   sgr_from_port           = 80
   sgr_to_port             = 80
-  sgr_ipv4                = var.sg_rule_all_ip
+  sgr_ipv4                = var.ipv4_rule
   sgr_ipv6                = var.ipv6_rule
   sgr_protocol            = "tcp"
   depends_on              = [module.coodesh_sg]
@@ -44,7 +44,7 @@ module "coodesh_sgr_ssh" {
   sgr_type                = "ingress"
   sgr_from_port           = 22
   sgr_to_port             = 22
-  sgr_ipv4                = var.sg_rule_all_ip
+  sgr_ipv4                = var.ipv4_rule
   sgr_ipv6                = var.ipv6_rule
   sgr_protocol            = "tcp"
   depends_on              = [module.coodesh_sg]
