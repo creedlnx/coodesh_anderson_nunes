@@ -37,17 +37,6 @@ module "coodesh_sgr" {
   depends_on              = [module.coodesh_sg]
 }
 
-module "coodesh_sgr_ssh" {
-  source                  = "./modules/sg-rule"
-  sgr_security_group_name = module.coodesh_sg.security_group_name
-  sgr_type                = "ingress"
-  sgr_from_port           = 22
-  sgr_to_port             = 22
-  sgr_ipv4                = var.sg_rule_all_ip
-  sgr_protocol            = "tcp"
-  depends_on              = [module.coodesh_sg]
-}
-
 module "coodesh_sgr_outbound_all" {
   source                  = "./modules/sg-rule"
   sgr_security_group_name = module.coodesh_sg.security_group_name
