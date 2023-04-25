@@ -11,7 +11,7 @@ variable "vpc_id" {
 }
 
 variable "sg_rule_all_ip"{
-  default = ["0.0.0.0/0"]
+  default = ["170.246.69.9/32"]
 }
 
 variable "coodesh_availability_zone" {
