@@ -11,7 +11,15 @@ variable "vpc_id" {
 }
 
 variable "sg_rule_all_ip"{
+  default = ["0.0.0.0/0"]
+}
+
+variable "ipv4_rule"{
   default = ["170.246.69.9/32"]
+}
+
+variable "ipv6_rule"{
+  default = ["2804:4f60:7e29:b200:1af:f7f8:68a9:36d2/128"]
 }
 
 variable "coodesh_availability_zone" {

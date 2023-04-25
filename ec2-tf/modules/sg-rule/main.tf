@@ -8,5 +8,6 @@ resource "aws_security_group_rule" "example" {
   to_port           = var.sgr_to_port
   protocol          = var.sgr_protocol
   cidr_blocks       = var.sgr_ipv4
+  ipv6_cidr_blocks  = var.sgr_ipv6
   security_group_id = data.aws_security_group.security_group.id
 }
